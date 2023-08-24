@@ -18,6 +18,22 @@ php artisan breeze:install
 
 Don't be afraid, it doesn't need any option. It changed to interactive.
 
+## What's difference between Inertia 0.x and 1.x?
+
+### Renamed import
+
+Inertia 0.x
+```
+import { Link } from @inertiajs/inertia-react
+```
+
+Inertia 1.x
+```
+import { Link } from @inertiajs/react
+```
+
+[https://inertiajs.com/upgrade-guide](https://inertiajs.com/upgrade-guide)
+
 ## How to develop Laravel app with Inertia
 
 ```
