@@ -16,7 +16,7 @@ Laravel 10.x
 php artisan breeze:install
 ```
 
-Don't be afraid, it doesn't need any option. It changed to interactive.
+Don't be afraid, it doesn't need any option. It's interactive.
 
 ## What's difference between Inertia 0.x and 1.x?
 

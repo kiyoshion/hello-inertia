@@ -1,3 +1,4 @@
+import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import { Link, usePage } from "@inertiajs/react";
 
@@ -6,12 +7,15 @@ export default function Navbar() {
 
   return (
     <nav className='bg-white'>
-      <div className='flex items-center justify-between max-w-7xl mx-auto p-4'>
-        <Link href='/' className='inline-flex items-center px-3 py-2 border border-transparent leading-4 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 font-bold'>Hello Inertia 1.x</Link>
+      <div className='flex items-center justify-between max-w-7xl mx-auto py-2'>
+        <Link href='/' className='inline-flex items-center px-3 py-2 border border-transparent leading-4 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 font-bold'>
+          <ApplicationLogo with={24} height={24} className='mr-2' />
+          {import.meta.env.VITE_APP_NAME}
+        </Link>
         <div className='flex items-center'>
-          <Link href='/items' className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150'>Item</Link>
+          <Link href='/items' className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150'>Items</Link>
           {auth.user ?
-            <div className="hidden sm:flex sm:items-center sm:ml-6">
+            <div className="sm:flex sm:items-center sm:ml-6">
               <div className="ml-3 relative">
                   <Dropdown>
                       <Dropdown.Trigger>
@@ -47,7 +51,6 @@ export default function Navbar() {
                   </Dropdown>
               </div>
           </div>
-            // <Link href='/profile' className='p-4'>{auth.user.name}</Link>
           : (
             <>
               <Link href='/login' className='inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150'>Login</Link>

@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import Navbar from './Navbar';
 
 export default function Guest({ children }) {
@@ -11,6 +12,7 @@ export default function Guest({ children }) {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
