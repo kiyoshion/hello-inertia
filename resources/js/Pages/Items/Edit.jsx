@@ -5,12 +5,13 @@ import Layout from "@/Layouts/Layout";
 import { router, useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-export default function ItemEdit({ item }) {
+export default function ItemEdit({ item, csrf_token }) {
   const { data, setData } = useForm({
     title: item.title,
     body: item.body,
     image: item.image,
   });
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null)
 
@@ -30,6 +31,7 @@ export default function ItemEdit({ item }) {
 
     router.post(`/items/${item.id}`, {
       _method: 'put',
+      _token: csrf_token,
       ...formData,
     });
   };

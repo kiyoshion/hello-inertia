@@ -1,9 +1,9 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 
 export default function Navbar() {
-  const { auth } = usePage().props
+  const { auth, csrf_token } = usePage().props
 
   return (
     <nav className='bg-white'>
@@ -43,10 +43,14 @@ export default function Navbar() {
                       </Dropdown.Trigger>
 
                       <Dropdown.Content>
+                          <Dropdown.Link href={route('dashboard')}>Dashboard</Dropdown.Link>
                           <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                          <Dropdown.Link href={route('logout')} method="post" as="button">
+                          <button
+                            onClick={() => router.post('/logout', { _token: csrf_token })}
+                            className='block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out '
+                          >
                               Log Out
-                          </Dropdown.Link>
+                          </button>
                       </Dropdown.Content>
                   </Dropdown>
               </div>

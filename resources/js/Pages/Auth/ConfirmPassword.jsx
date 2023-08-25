@@ -4,10 +4,10 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, router, useForm } from '@inertiajs/react';
 
-export default function ConfirmPassword() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+export default function ConfirmPassword({ csrf_token }) {
+    const { data, setData, processing, errors, reset } = useForm({
         password: '',
     });
 
@@ -20,7 +20,10 @@ export default function ConfirmPassword() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('password.confirm'));
+        router.post('/password/confirm', {
+            password: data.password,
+            _token: csrf_token
+        })
     };
 
     return (

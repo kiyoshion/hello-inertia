@@ -16,7 +16,7 @@ COPY --from=caddy /usr/bin/caddy /usr/local/bin/caddy
 RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
 # Install Node.js
-RUN apk update && apk --update add nodejs npm
+RUN apk update && apk --update add nodejs npm && npm i -g pm2
 
 # Install composer
 COPY --from=composer/composer /usr/bin/composer /usr/local/bin/composer
@@ -71,6 +71,9 @@ ARG CACHE_DRIVER=${CACHE_DRIVER}
 ARG QUEUE_CONNECTION=${QUEUE_CONNECTION}
 ARG SESSION_DRIVER=${SESSION_DRIVER}
 ARG SESSION_LIFETIME=${SESSION_LIFETIME}
+ARG SESSION_DOMAIN=${SESSION_DOMAIN}
+ARG SESSION_SECURE_COOKIE=${SESSION_SECURE_COOKIE}
+ARG SANCTUM_STATEFUL_DOMAINS=${SANCTUM_STATEFUL_DOMAINS}
 
 ARG REDIS_HOST=${REDIS_HOST}
 ARG REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -90,6 +93,8 @@ ARG PUSHER_APP_ID=${PUSHER_APP_ID}
 ARG PUSHER_APP_KEY=${PUSHER_APP_KEY}
 ARG PUSHER_APP_SECRET=${PUSHER_APP_SECRET}
 ARG PUSHER_APP_CLUSTER=${PUSHER_APP_CLUSTER}
+
+ARG VITE_APP_NAME=${VITE_APP_NAME}
 
 # Start app
 EXPOSE 80

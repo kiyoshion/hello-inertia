@@ -5,8 +5,8 @@ import Layout from "@/Layouts/Layout";
 import { router, useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-export default function ItemCreate({}) {
-  const { data, setData, post } = useForm({
+export default function ItemCreate({ csrf_token }) {
+  const { data, setData } = useForm({
     title: '',
     body: '',
     image: '',
@@ -25,7 +25,13 @@ export default function ItemCreate({}) {
 
   const submit = (e) => {
     e.preventDefault();
-    post('/items');
+
+    router.post('/items', {
+      title: data.title,
+      body: data.body,
+      image: data.image,
+      _token: csrf_token
+    })
   };
 
   useEffect(() => {

@@ -2,13 +2,13 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Link, useForm, usePage } from '@inertiajs/react';
+import { Link, router, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
-export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
+export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '', csrf_token }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
     });
@@ -16,7 +16,11 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'));
+        router.patch('/profile', {
+            name: data.name,
+            email: data.email,
+            _token: csrf_token
+        })
     };
 
     return (
