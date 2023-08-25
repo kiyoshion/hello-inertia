@@ -4,12 +4,12 @@ import AppHead from "@/Layouts/AppHead";
 import Layout from "@/Layouts/Layout";
 import { router } from "@inertiajs/react";
 
-export default function ItemShow({ item, auth }) {
+export default function ItemShow({ item, auth, csrf_token }) {
   return (
     <Layout>
       <AppHead
-        title={`${item.title} - detail`}
-        desc={`${item.title}. This is a detail page for ${item.title}.`}
+        title={`${item.title}`}
+        desc={`${item.body.substring(0, 50)}`}
         image={item.image_fullpath}
       />
       <div>
@@ -20,7 +20,11 @@ export default function ItemShow({ item, auth }) {
               <PrimaryButton onClick={() => router.get(`/items/${item.id}/edit`)} className='mr-4'>
                 Edit
               </PrimaryButton>
-              <SecondaryButton onClick={() => router.delete(`/items/${item.id}`)}>
+              <SecondaryButton
+                onClick={() => router.delete(`/items/${item.id}`, {
+                  _token: csrf_token
+                })}
+              >
                 Delete
               </SecondaryButton>
             </div>

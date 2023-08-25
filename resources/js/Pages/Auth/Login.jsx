@@ -5,10 +5,10 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 
-export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+export default function Login({ status, canResetPassword, csrf_token }) {
+    const { data, setData, processing, errors, reset } = useForm({
         email: '',
         password: '',
         remember: false,
@@ -23,7 +23,12 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        router.post('/login', {
+            email: data.email,
+            password: data.password,
+            remember: data.remember,
+            _token: csrf_token
+        })
     };
 
     return (

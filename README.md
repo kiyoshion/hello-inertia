@@ -34,40 +34,13 @@ import { Link } from @inertiajs/react
 
 [https://inertiajs.com/upgrade-guide](https://inertiajs.com/upgrade-guide)
 
-## How to develop Laravel app with Inertia
+## How to use SSR
+
+I used pm2
 
 ```
-curl -s "https://laravel.build/hello-inertia" | bash
+npm i -g pm2
+pm2 start bootstrap/ssr/ssr.js -n hello_inertia -i 1
 ```
 
-```
-cd hello-inertia
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-sail up
-```
-
-```
-sail php artisan migrate
-```
-
-```
-sail composer require laravel/breeze --dev
-```
-
-```
-sail php artisan breeze:install
-```
-
-I simply selected them.
-```
-React with Inertia
-Inertia SSR
-PHPUnit
-```
-
-```
-sail php artisan migrate
-sail npm install
-sail npm run dev
-```
-
+[https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
