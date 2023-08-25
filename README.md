@@ -2,6 +2,8 @@
 
 This is a sample application to develop Laravel 10.x, Inertia 1.x, React 18.x and Vite 4.x. I have deployed this application on my VPS with SSR.
 
+demo: [https://hello-inertia.pandora.nohaco.com](https://hello-inertia.pandora.nohaco.com)
+
 ## What's difference between Laravel 9.x and 10.x?
 
 ### breeze:install
@@ -43,4 +45,4 @@ npm i -g pm2
 pm2 start bootstrap/ssr/ssr.js -n hello_inertia -i 1
 ```
 
-[https://pm2.keymetrics.io/](https://pm2.keymetrics.io/)
+[https://pm2.keymetrics.io](https://pm2.keymetrics.io)
